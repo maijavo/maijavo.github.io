@@ -1,169 +1,174 @@
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lastenvaatepuu</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  
-  <style>
-    .navbar-custom {
-      background-color: #9EA98D;     
-    }
+    <!DOCTYPE html>
+    <html lang="fi">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lastenvaatepuu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     
-    .navbar-custom .navbar-brand,
-    .navbar-custom .navbar-text {
-      color: #044e25;
-      font-family: 'Poppins';
-    }
-    
-    .navbar-custom .navbar-nav .nav-link {
-      color: rgba(6, 64, 20, 0.8);
-    }
-    
-    .navbar-custom .nav-item.active .nav-link,
-    .navbar-custom .nav-item:hover .nav-link {
-      color: #ffffff;
-    }
-    
-    .custom-toggler .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(6, 64, 20, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-    }
-    
-    .custom-toggler.navbar-toggler {
-      border-color: rgba(6, 64, 20, 0.8);
-    }
-  </style>
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-custom">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="logot.PNG" alt="Logo" style="width:40px;" class="rounded-pill">  
-        Lastenvaatepuu
-      </a>
-      <button class="navbar-toggler custom-toggler" type="button" 
-              data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-              aria-controls="navbarNav" aria-expanded="false" 
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Etusivu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="ulkovaatetus.html">Ulkovaatteet</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sisavaatteet.html">Sisävaatteet</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Tietoameista.html">Tietoa meistä</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <style>
+        .navbar-custom {
+        background-color: #9EA98D;     
+        }
+        
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+        color: #044e25;
+        font-family: 'Poppins';
+        }
+        
+        .navbar-custom .navbar-nav .nav-link {
+        color: rgba(6, 64, 20, 0.8);
+        }
+        
+        .navbar-custom .nav-item.active .nav-link,
+        .navbar-custom .nav-item:hover .nav-link {
+        color: #ffffff;
+        }
+        
+        .custom-toggler .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(6, 64, 20, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+        
+        .custom-toggler.navbar-toggler {
+        border-color: rgba(6, 64, 20, 0.8);
+        }
+    </style>
+    </head>
 
-  <div id="demo" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-      <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
-    </div>
-    
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="kuva1.jpg" alt="Lapset" class="d-block w-100">
-        <div class="carousel-caption">
-          <h3>Uutuuksia!</h3>
-          <p>Kevään uutuuksia meiltä!</p>
+    <!-- Navbar -osuus -->
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="logot.PNG" alt="Logo" style="width:40px;" class="rounded-pill">  
+            Lastenvaatepuu
+        </a>
+        <button class="navbar-toggler custom-toggler" type="button" 
+                data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" 
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.html">Etusivu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="ulkovaatetus.html">Ulkovaatteet</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="sisavaatteet.html">Sisävaatteet</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="Tietoameista.html">Tietoa meistä</a>
+            </li>
+            </ul>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="kuva4.jpg" alt="mainos" class="d-block w-100">
-        <div class="carousel-caption">
-          <h3>Tutustu meihin!</h3>
-          <p>Lue tästä lisää!</p>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="kuva2.jpg" alt="Alet" class="d-block w-100">
-        <div class="carousel-caption">
-          <h3>Alennukset jopa 50%</h3>
-          <p>Viime kauden poistot edullisesti</p>
-        </div> 
-      </div>
-      <div class="carousel-item">
-        <img src="kuva3.jpg" alt="Kotimainen" class="d-block w-100">
-        <div class="carousel-caption">
-          <h3>Aina kotimaista!</h3>
-          <p>Kotimaiset vaatteet meiltä!</p>
-        </div>  
-      </div>
+    </nav>
+
+<!-- karuselli -->
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+        </div>
+        
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="kuva1.jpg" alt="Lapset" class="d-block w-100">
+            <div class="carousel-caption">
+            <h3>Uutuuksia!</h3>
+            <p>Kevään uutuuksia meiltä!</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="kuva4.jpg" alt="mainos" class="d-block w-100">
+            <div class="carousel-caption">
+            <h3>Tutustu meihin!</h3>
+            <p>Lue tästä lisää!</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="kuva2.jpg" alt="Alet" class="d-block w-100">
+            <div class="carousel-caption">
+            <h3>Alennukset jopa 50%</h3>
+            <p>Viime kauden poistot edullisesti</p>
+            </div> 
+        </div>
+        <div class="carousel-item">
+            <img src="kuva3.jpg" alt="Kotimainen" class="d-block w-100">
+            <div class="carousel-caption">
+            <h3>Aina kotimaista!</h3>
+            <p>Kotimaiset vaatteet meiltä!</p>
+            </div>  
+        </div>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <ul class="pagination mt-5">
+
+<!-- Ruudukko -->
+    <div class="container-fluid mt-3">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4"> Tervetuloa kotimaisten vaatteiden kauppaan! Meiltä löydät valikoiman laadukkaita ja kotimaisia alastenvaatteita. Lorem ipsum lorem ipsum pipsum jne. Tervetuloa!  </div>
+            <div class="col-md-4"> <img src="bodykuva.jpg" alt="Logo" style="width:300px;" class="rounded-pill">  </div>
+            <div class="col-md-4">
+                <p>Aukioloajat </p>
+                <p> Ma - Pe 9-14 </p>
+                <p>La 10-18 </p>
+                <p>Su suljettu </p> </div>
+        </div>
+    </div>
+
+    <ul class="pagination mt-5">
+
+    <!-- Kortti  -->
+    <div class="container mt-3">
+        <h2>Jättialennukset alkavat!</h2>
+        <div class="card">
+        <div class="card-body"> Vuoden odotetuin alennusmyynti alkaa kesäkuussa. Katso alhaalta alennetut tuotteemme ja tule ostoksille! </div>
+        </div>
+    </div>
+<!-- Taulukko tästä -->
+    <div class="container mt-3">          
+        <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+            <th>Tuoteryhmä</th>
+            <th>Alennusprosentti</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>Ulkohaalarit</td>
+            <td>-15%</td>
+            </tr>
+            <tr>
+            <td>Sisävaatteet</td>
+            <td>-20%</td>
+            </tr>
+            <tr>
+            <td>Hatut ja pipot</td>
+            <td>-20%</td>
+            </tr>
+        </tbody>
+        </table>
     </div>
     
-    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </button>
-  </div>
-
-  <ul class="pagination mt-5">
-
-  <div class="container-fluid mt-3">
-    <div class="container">
-    <div class="row">
-        <div class="col-md-4"> Tervetuloa kotimaisten vaatteiden kauppaan! Meiltä löydät valikoiman laadukkaita ja kotimaisia alastenvaatteita. Lorem ipsum lorem ipsum pipsum jne. Tervetuloa!  </div>
-        <div class="col-md-4"> <img src="bodykuva.jpg" alt="Logo" style="width:300px;" class="rounded-pill">  </div>
-         <div class="col-md-4">
-            <p>Aukioloajat </p>
-            <p> Ma - Pe 9-14 </p>
-            <p>La 10-18 </p>
-            <p>Su suljettu </p> </div>
-    </div>
-  </div>
-
-<ul class="pagination mt-5">
-    
-  <div class="container mt-3">
-    <h2>Jättialennukset alkavat!</h2>
-    <div class="card">
-      <div class="card-body"> Vuoden odotetuin alennusmyynti alkaa kesäkuussa. Katso alhaalta alennetut tuotteemme ja tule ostoksille! </div>
-    </div>
-  </div>
-
-  <div class="container mt-3">          
-    <table class="table table-dark table-hover">
-      <thead>
-        <tr>
-          <th>Tuoteryhmä</th>
-          <th>Alennusprosentti</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Ulkohaalarit</td>
-          <td>-15%</td>
-        </tr>
-        <tr>
-          <td>Sisävaatteet</td>
-          <td>-20%</td>
-        </tr>
-        <tr>
-          <td>Hatut ja pipot</td>
-          <td>-20%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
