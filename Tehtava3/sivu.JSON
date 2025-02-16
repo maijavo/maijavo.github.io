@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <title>JSON Git Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Maijan JSON testi sivu</h1>
+    <div id="vastaus">
+
+    {
+        "yritys": "Lastenvaatepuu", "yhteystiedot":{"Osoite:" Osoitetie 13, Helsinki",
+        "Puhelin":050 1234456", "email": "info@lastenvaatepuu.fi"}
+        "Tuotteet": ["sisävaatteet", "ulkovaatteet"],
+        "henkilökunta":["nimi":"Mikko Mallikas", "titteli":"myyjä"]
+    }
+</div>
+<script>
+</html>
+

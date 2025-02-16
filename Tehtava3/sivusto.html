@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <title>JSON Example</title>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <div id="vastaus"></div> 
+    <script>
+        let vastausDiv = document.getElementById("vastaus");
+
+        vastausDiv.textContent = "Tämä teksti lisättiin JavaScriptillä!";
+
+function kerro(data){
+    var teksti = "";
+    teksti = "<h1>" + data.yritys + "</h1>";
+    teksti = teksti +"<p>"+"<b>"+"Yhteysteidot" +"</b>"+"<br>"
+        + data.yhteystiedot.puhelin + "<br>"
+        + data.yhteystiedot.email + "</p>";
+    document.getElementById("vastaus").innerHTML = teksti;
+    }
+
+    fetch('https://maijavo.github.io/sivu.JSON')
+    .then(function (response) {
+        return response.json();
+        })
+    .then(function (responseJson) {
+        kerro(responseJson);
+        })
+    .catch(function (error) {
+        document.getElementById("vastaus").innerHTML = 
+        "<p>Tietoa ei pystytä hakemaan</p>";
+        })
+
+    </script>
+</body>
+</html>
