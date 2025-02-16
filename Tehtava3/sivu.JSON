@@ -13,8 +13,8 @@
         const data = {
             "yritys": "Lastenvaatepuu",
             "yhteystiedot": {
-                "Osoite": "Osoitetie 13, Helsinki",
-                "Puhelin": "050 1234456",
+                "osoite": "Osoitetie 13, Helsinki",
+                "puhelin": "050 1234456",
                 "email": "info@lastenvaatepuu.fi"
             },
             "Tuotteet": ["sisävaatteet", "ulkovaatteet"],
