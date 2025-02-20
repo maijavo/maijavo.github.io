@@ -1,0 +1,40 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const vastausElementti = document.getElementById("vastaus");
+    const jsonUrl = "TÄHÄN_OMA_JSON_URL"; // Lisää oma JSON-tietueesi URL
+
+    fetch(jsonUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Verkkovirhe: " + response.status);
+            }
+            return response.json();
+        })
+        .then(data => kerro(data))
+        .catch(error => {
+            vastausElementti.innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
+            console.error("Fetch error:", error);
+        });
+});
+
+function kerro(data) {
+    const vastausElementti = document.getElementById("vastaus");
+    let html = `<h2>${data.otsikko}</h2>`;
+    html += `<p>${data.kuvaus}</p>`;
+    html += `<img src="${data.kuva}" alt="Kuva" width="300">`;
+    html += `<h3>Opintojakso: ${data.opintojakso.nimi} (${data.opintojakso.tunnus})</h3>`;
+    html += `<p>Opintopisteet: ${data.opintojakso.opintopisteet}</p>`;
+    
+    html += `<h3>Sisältö</h3><ul>`;
+    data.sisalto.forEach(aihe => {
+        html += `<li>${aihe}</li>`;
+    });
+    html += `</ul>`;
+
+    html += `<h3>Tekniikat</h3><ul>`;
+    data.tekniikat.forEach(tekniikka => {
+        html += `<li><a href="${tekniikka.linkki}" target="_blank">${tekniikka.aihe}</a></li>`;
+    });
+    html += `</ul>`;
+
+    vastausElementti.innerHTML = html;
+}
