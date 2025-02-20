@@ -3,7 +3,7 @@ function kerro(data) {
 
     teksti = "<h1>" + data.otsikko + "</h1>";
     teksti += "<p>" + data.kuvaus + "</p>";
-    teksti += '<img src="https://maijavo.github.io/Tehtava3/koira.png" alt="Kuva" width="300">';
+    teksti += '<img src="https://maijavo.github.io/Tehtava3/digi.jpg" alt="Kuva" width="300">';
     teksti += "<h3>Opintojakso</h3>";
     teksti += "<p>" + data.opintojakso.nimi + " (" + data.opintojakso.tunnus + "), " + data.opintojakso.opintopisteet + " op</p>";
 
@@ -23,7 +23,7 @@ function kerro(data) {
 }
 
 
-fetch("https://maijavo.github.io/Tehtava3/oma.json")
+fetch("https://maijavo.github.io/Tehtava3/harjoitus3.JSON")
     .then(response => response.json()) 
     .then(responseJson => kerro(responseJson)) 
     .catch(error => {
