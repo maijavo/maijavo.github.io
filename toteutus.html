@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kurssin toteutus</title>
+</head>
+<body>
+    <nav>
+        <a href="kurssi.html">Kurssi</a> | 
+        <a href="toteutus.html">Toteutus</a>
+    </nav>
+
+    <h1>Kurssin toteutus</h1>
+    <div id="vastaus"></div>
+
+    <script>
+    function kerro(data) {
+        var teksti = "<h2>" + data.toteutuksen_nimi + "</h2>";
+        teksti += "<p><b>Osallistujia:</b> " + data.osallistujat_lkm + " kpl</p>";
+        teksti += "<h3>Osallistujat</h3><ul>";
+
+        data.osallistujat.forEach(function(nimi) {
+            teksti += "<li>" + nimi + "</li>";
+        });
+
+        teksti += "</ul>";
+        teksti += "<p><b>Alkaa:</b> " + data.alkamispaiva + "</p>";
+        teksti += "<p><b>Päättyy:</b> " + data.loppumispaiva + "</p>";
+        teksti += "<p><b>Kesto:</b> " + data.kesto_viikkoina + " viikkoa</p>";
+        teksti += '<img src="' + data.kuva + '" alt="Kurssin kuva" width="300">';
+
+        document.getElementById("vastaus").innerHTML = teksti;
+    }
+
+    fetch('https://maijavo.github.io/Tehtava3/toteutus.json')
+        .then(response => response.json())
+        .then(responseJson => kerro(responseJson))
+        .catch(error => {
+            document.getElementById("vastaus").innerHTML = "<p>Tietoa ei pystytä hakemaan</p>";
+        });
+    </script>
+</body>
+</html>
