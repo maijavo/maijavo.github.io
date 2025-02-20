@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const vastausElementti = document.getElementById("vastaus");
-    const jsonUrl = "TÄHÄN_OMA_JSON_URL"; // Lisää oma JSON-tietueesi URL
+    const jsonUrl = "maijavo.github.io/Tehtava3/oma.json";
 
     fetch(jsonUrl)
         .then(response => {
