@@ -18,30 +18,43 @@
     </nav>
 
     <h1>Junat Helsingistä Tampereelle</h1>
-    <div id="junat"></div>
+    <div id="junat"><p>Ladataan tietoja...</p></div>
 
     <script>
         fetch("https://rata.digitraffic.fi/api/v1/live-trains/station/HKI?departing_trains=100&include_nonstopping=false")
-            .then(response => response.json())
-            .then(data => {
-                let html = "<h2>Juna-aikataulut</h2>";
+        .then(response => {
+        if (!response.ok) {
+        throw new Error("Verkkovirhe: " + response.status);
+        }
+        return response.json();
+        })
+        .then(data => {
+         console.log("Haettu data:", data); 
+        let html = "<h2>Juna-aikataulut</h2>";
+        let juniaLoytyi = false;
 
-                for (var i = 0; i < data.length; i++) {
-                    for (var j = 0; j < data[i].timeTableRows.length; j++) {
+        for (var i = 0; i < data.length; i++) {
+        if (!data[i].timeTableRows) continue; 
+        for (var j = 0; j < data[i].timeTableRows.length; j++) {
+        if (data[i].timeTableRows[j].stationShortCode == "TPE" &&
+            data[i].timeTableRows[j].type == "DEPARTURE" &&
+            data[i].trainCategory == "Long-distance") {
 
-                        if (data[i].timeTableRows[j].stationShortCode == "TPE" &&
-                            data[i].timeTableRows[j].type == "DEPARTURE" &&
-                            data[i].trainCategory == "Long-distance") {
+        var lahtoasema = data[i].timeTableRows[0].stationShortCode;
+        var vika = data[i].timeTableRows.length - 1;
+        var maaranpaa = data[i].timeTableRows[vika].stationShortCode;
+        var pvm = data[i].timeTableRows[j].scheduledTime;
+        var aika = pvm.substr(0, 10) + " kello: " + pvm.substr(11, 5);
 
-                            var lahtoasema = data[i].timeTableRows[0].stationShortCode;
-                            var vika = data[i].timeTableRows.length - 1;
-                            var maaranpaa = data[i].timeTableRows[vika].stationShortCode;
-                            var pvm = data[i].timeTableRows[j].scheduledTime;
-                            var aika = pvm.substr(0, 10) + " kello: " + pvm.substr(11, 5);
-
-                            html += `<p>Juna ${data[i].trainNumber}: ${lahtoasema} → ${maaranpaa}, Lähtöaika: ${aika}</p>`;
-                        }
-                    }
-                }
-
-                document.getElementById("junat").innerHTML = html || "<p>Ei löytynyt so
+        html += `<p>Juna ${data[i].trainNumber}: ${lahtoasema} → ${maaranpaa}, Lähtöaika: ${aika}</p>`; juniaLoytyi = true; }
+        }}
+        
+        document.getElementById("junat").innerHTML = juniaLoytyi ? html : "<p>Ei löytynyt sopivia junia.</p>";
+            })
+            .catch(error => {
+                console.error("Virhe haettaessa junien tietoja:", error);
+                document.getElementById("junat").innerHTML = "<p>Junatietojen hakeminen epäonnistui.</p>";
+            });
+    </script>
+</body>
+</html>
