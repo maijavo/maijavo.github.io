@@ -34,13 +34,10 @@
     </nav>
 
     <h1>Liikennekamerat</h1>
-    <div id="kamerat">Ladataan...</div>  <!-- Alkuviesti -->
+    <div id="kamerat"</div>  
 
     <script>
-        // API-osoite
         const API_URL = "https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data";
-
-        // Funktio datan hakemiseen
         function haeKamerat() {
             fetch(API_URL)
                 .then(response => {
@@ -50,7 +47,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log("Haettu data:", data); // Debug
+                    console.log("Haettu data:", data); // 
 
                     let container = document.getElementById("kamerat");
                     let html = "<h2>Kelikamerakuvat</h2>";

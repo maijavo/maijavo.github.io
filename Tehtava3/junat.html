@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tyyli.css"> 
+    <title>Juna-aikataulut</title>
+
+</head>
+<body>
+    <nav>
+        <a href="harjoitus3.html">Kurssi</a>  
+        <a href="toteutus.html">Toteutus</a>
+        <a href="tapahtumat.html">Tapahtumat</a>
+        <a href="saa.html">Sää</a>
+        <a href="liikennekamera.html">Liikennekamera</a>
+        <a href="junat.html">Junat</a>
+    </nav>
+
+    <h1>Junat Helsingistä Tampereelle</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Junan numero</th>
+                <th>Lähtöasema</th>
+                <th>Määränpää</th>
+                <th>Lähtöaika</th>
+            </tr>
+        </thead>
+        <tbody id="junaTaulukko">
+            <tr><td colspan="4">Ladataan tietoja...</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        const API_URL = "https://rata.digitraffic.fi/api/v1/live-trains/station/HKI?departing_trains=100&include_nonstopping=false";
+
+        function haeJunat() {
+            fetch(API_URL)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Virhe haettaessa junadataa, status: " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Haettu data:", data);
+                    let taulukko = document.getElementById("junaTaulukko");
+                    let html = "";
+
+                    for (var i = 0; i < data.length; i++) {
+                        for (var j = 0; j < data[i].timeTableRows.length; j++) {
+                            if (data[i].timeTableRows[j].stationShortCode == "TPE" && data[i].timeTableRows[j].type == "DEPARTURE") {
+                                let lahtoasema = data[i].timeTableRows[0].stationShortCode;
+                                let vika = data[i].timeTableRows.length - 1;
+                                let maaranpaa = data[i].timeTableR
+                                let pvm = data[i].timeTableRows[j].scheduledTime;
+                                let lahtoaika = pvm.substr(0, 10) + " kello: " + pvm.substr(11,5);
+
+                                html += `
+                                    <tr>
+                                        <td>${data[i].trainNumber}</td>
+                                        <td>${lahtoasema}</td>
+                                        <td>${maaranpaa}</td>
+                                        <td>${lahtoaika}</td>
+                                    </tr>
+                                `;
+                            }
+                        }
+                    }
+
+                    // Jos tietoja löytyi, lisätään ne taulukkoon, muuten näytetään viesti
+                    taulukko.innerHTML = html || "<tr><td colspan='4'>Ei löytynyt sopivia junia.</td></tr>";
+                })
+                .catch(error => {
+                    console.error("Virhe:", error);
+                    document.getElementById("junaTaulukko").innerHTML = "<tr><td colspan='4'>Tietoja ei voitu hakea.</td></tr>";
+                });
+        }
+
+        haeJunat();
+    </script>
+
+</body>
+</html>
