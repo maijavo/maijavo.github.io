@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juna-aikataulut</title>
+    <title>Liikennekamerat - Tampere</title>
     <link rel="stylesheet" href="tyyli.css">
 </head>
 <body>
@@ -17,49 +17,37 @@
         <a href="junat.html">Junat</a>
     </nav>
 
-    <h1>Liikennekamerat</h1>
-    <div id="kamerat"</div>  
+    <h1>Liikennekamerat - Lakalaiva, Tie 3</h1>
+    <div id="kamerat"></div>
 
     <script>
-        const API_URL = "https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data";
-        function haeKamerat() {
-            fetch(API_URL)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Verkkovirhe, status: " + response.status);
-                    }
-                    return response.json();
-                })
+        // Lakalaivan liikennekamerat (Tie 3)
+        const kamerat = ["C04507", "C04508", "C04509", "C04510", "C04511"];
+        let html = "";
+
+        kamerat.forEach(id => {
+            fetch(`https://tie.digitraffic.fi/api/weathercam/v1/stations/${id}/data`)
+                .then(response => response.json())
                 .then(data => {
-                    console.log("Haettu data:", data); // 
+                    if (data && data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            let kuvaURL = data[i].imageUrl;
+                            let aikaleima = data[i].measuredTime;
+                            let aika = new Date(aikaleima).toLocaleString("fi-FI");
 
-                    let container = document.getElementById("kamerat");
-                    let html = "<h2>Kelikamerakuvat</h2>";
-
-                    // Tarkistetaan, onko `cameraPresets` olemassa ja sisältääkö se jotain
-                    if (data.cameraPresets && data.cameraPresets.length > 0) {
-                        data.cameraPresets.forEach(kamera => {
-                            html += `
-                                <div class="kamera">
-                                    <h3>${kamera.presentationName || "Ei nimeä"}</h3>
-                                    <p>${kamera.measuredTime || "Ei aikaleimaa"}</p>
-                                    <img src="${kamera.imageUrl}" alt="Kelikamerakuva" width="250">
-                                </div>`;
-                        });
-                    } else {
-                        html += "<p>Ei kelikamerakuvia saatavilla.</p>";
+                            html += `<div>
+                                <h3>Liikennekamera ${id}</h3>
+                                <p>${aika}</p>
+                                <img src="${kuvaURL}" alt="Liikennekamerakuva ${id}" width="400">
+                            </div>`;
+                        }
                     }
-
-                    container.innerHTML = html;
+                    document.getElementById("kamerat").innerHTML = html;
                 })
                 .catch(error => {
-                    console.error("Virhe:", error);
-                    document.getElementById("kamerat").innerHTML = "<p>Virhe ladattaessa kuvia.</p>";
+                    console.error(`Virhe haettaessa liikennekameran ${id} tietoja:`, error);
                 });
-        }
-
-        // Kutsutaan funktiota sivun latautuessa
-        haeKamerat();
+        });
     </script>
 
 </body>
