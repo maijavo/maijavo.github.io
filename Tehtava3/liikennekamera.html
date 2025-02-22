@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liikennekamera</title>
+    <style>
+        #kamerat {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .kamera {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Liikennekamerta</h1>
+    <div id="kamerat"></div>
+
+    <script>
+        fetch("https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data")
+            .then(response => response.json())
+            .then(data => {
+                let container = document.getElementById("kamerat");
+                let html = "<h2>Kelikamerakuvat</h2>";
+
+                for (var i = 0; i < data.cameraPresets.length; i++) {
+                    let kamera = data.cameraPresets[i];
+                    html += `
+                        <div class="kamera">
+                            <h3>${kamera.presentationName}</h3>
+                            <p>${kamera.measuredTime}</p>
+                            <img src="${kamera.imageUrl}" alt="Kelikamerakuva" width="250">
+                        </div>`;
+                }
+
+                container.innerHTML = html;
+            })
+            .catch(error => console.error("Virhe haettaessa kelikamerakuvia:", error));
+    </script>
+
+</body>
+</html>
