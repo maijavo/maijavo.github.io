@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tyyli.css"> 
     <title>Juna-aikataulut</title>
-
+    <link rel="stylesheet" href="tyyli.css">
 </head>
 <body>
+
     <nav>
         <a href="harjoitus3.html">Kurssi</a>  
         <a href="toteutus.html">Toteutus</a>
@@ -18,68 +18,30 @@
     </nav>
 
     <h1>Junat Helsingistä Tampereelle</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Junan numero</th>
-                <th>Lähtöasema</th>
-                <th>Määränpää</th>
-                <th>Lähtöaika</th>
-            </tr>
-        </thead>
-        <tbody id="junaTaulukko">
-            <tr><td colspan="4">Ladataan tietoja...</td></tr>
-        </tbody>
-    </table>
+    <div id="junat"></div>
 
     <script>
-        const API_URL = "https://rata.digitraffic.fi/api/v1/live-trains/station/HKI?departing_trains=100&include_nonstopping=false";
+        fetch("https://rata.digitraffic.fi/api/v1/live-trains/station/HKI?departing_trains=100&include_nonstopping=false")
+            .then(response => response.json())
+            .then(data => {
+                let html = "<h2>Juna-aikataulut</h2>";
 
-        function haeJunat() {
-            fetch(API_URL)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Virhe haettaessa junadataa, status: " + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Haettu data:", data);
-                    let taulukko = document.getElementById("junaTaulukko");
-                    let html = "";
+                for (var i = 0; i < data.length; i++) {
+                    for (var j = 0; j < data[i].timeTableRows.length; j++) {
 
-                    for (var i = 0; i < data.length; i++) {
-                        for (var j = 0; j < data[i].timeTableRows.length; j++) {
-                            if (data[i].timeTableRows[j].stationShortCode == "TPE" && data[i].timeTableRows[j].type == "DEPARTURE") {
-                                let lahtoasema = data[i].timeTableRows[0].stationShortCode;
-                                let vika = data[i].timeTableRows.length - 1;
-                                let maaranpaa = data[i].timeTableR
-                                let pvm = data[i].timeTableRows[j].scheduledTime;
-                                let lahtoaika = pvm.substr(0, 10) + " kello: " + pvm.substr(11,5);
+                        if (data[i].timeTableRows[j].stationShortCode == "TPE" &&
+                            data[i].timeTableRows[j].type == "DEPARTURE" &&
+                            data[i].trainCategory == "Long-distance") {
 
-                                html += `
-                                    <tr>
-                                        <td>${data[i].trainNumber}</td>
-                                        <td>${lahtoasema}</td>
-                                        <td>${maaranpaa}</td>
-                                        <td>${lahtoaika}</td>
-                                    </tr>
-                                `;
-                            }
+                            var lahtoasema = data[i].timeTableRows[0].stationShortCode;
+                            var vika = data[i].timeTableRows.length - 1;
+                            var maaranpaa = data[i].timeTableRows[vika].stationShortCode;
+                            var pvm = data[i].timeTableRows[j].scheduledTime;
+                            var aika = pvm.substr(0, 10) + " kello: " + pvm.substr(11, 5);
+
+                            html += `<p>Juna ${data[i].trainNumber}: ${lahtoasema} → ${maaranpaa}, Lähtöaika: ${aika}</p>`;
                         }
                     }
+                }
 
-                    // Jos tietoja löytyi, lisätään ne taulukkoon, muuten näytetään viesti
-                    taulukko.innerHTML = html || "<tr><td colspan='4'>Ei löytynyt sopivia junia.</td></tr>";
-                })
-                .catch(error => {
-                    console.error("Virhe:", error);
-                    document.getElementById("junaTaulukko").innerHTML = "<tr><td colspan='4'>Tietoja ei voitu hakea.</td></tr>";
-                });
-        }
-
-        haeJunat();
-    </script>
-
-</body>
-</html>
+                document.getElementById("junat").innerHTML = html || "<p>Ei löytynyt so
