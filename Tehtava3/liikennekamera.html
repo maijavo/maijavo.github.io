@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="tyyli.css">
 </head>
 <body>
-
     <nav>
         <a href="harjoitus3.html">Kurssi</a>  
         <a href="toteutus.html">Toteutus</a>
@@ -16,47 +15,24 @@
         <a href="liikennekamera.html">Liikennekamera</a>
         <a href="junat.html">Junat</a>
     </nav>
-
-    <h1>Liikennekamerat – Lakalaiva (VT3)</h1>
+    
+    <h1>Liikennekamerat: Tampere Lakalaiva (VT3)</h1>
     <div id="kamerat"></div>
 
     <script>
-        // Haetaan tiedot Lakalaivan asemalta (ID: C04507)
-        fetch("https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/data")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Verkkovirhe: " + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Haettu data:", data); // Debug: Tarkista API:n palauttama JSON
-                let html = "<h2>Liikennekamerat</h2>";
-
-                // Tarkistetaan, että preset-kamerat ovat saatavilla
-                if (data.properties && data.properties.presets) {
-                    let presets = data.properties.presets;
-
-                    for (let i = 0; i < presets.length; i++) {
-                        let presetId = presets[i].id;
-                        let imageUrl = `https://www.tie.digitraffic.fi/api/weathercam/v1/preset-image/${presetId}`;
-
-                        html += `<div class="kamera">
-                                    <h3>Kamera ${presetId}</h3>
-                                    <img src="${imageUrl}" alt="Liikennekamerakuva ${presetId}">
-                                </div>`;
-                    }
-                } else {
-                    html += "<p>Ei löytynyt liikennekamerakuvia.</p>";
-                }
-
-                document.getElementById("kamerat").innerHTML = html;
-            })
-            .catch(error => {
-                console.error("Virhe haettaessa liikennekameran tietoja:", error);
-                document.getElementById("kamerat").innerHTML = "<p>Liikennekameratietojen hakeminen epäonnistui.</p>";
-            });
+        document.addEventListener("DOMContentLoaded", function () {
+            const kameraID = "C04507";
+            const presetIDs = ["C0450701", "C0450702", "C0450703", "C0450704", "C0450709"];
+            let kameratDiv = document.getElementById("kamerat");
+            
+            let html = "";
+            for (let i = 0; i < presetIDs.length; i++) {
+                let kuvaUrl = `https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/presets/C0450701/image`;
+                html += `<div><h3>Kamera ${i + 1}</h3><img src="${kuvaUrl}" alt="Liikennekamera ${i + 1}" onerror="this.onerror=null; this.src='error.png';"></div>`;
+            }
+            
+            kameratDiv.innerHTML = html;
+        });
     </script>
-
 </body>
 </html>
