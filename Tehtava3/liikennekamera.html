@@ -27,7 +27,7 @@
             
             let html = "";
             for (let i = 0; i < presetIDs.length; i++) {
-                let kuvaUrl = `https://tie.digitraffic.fi/api/weathercam/v1/stations/C04507/presets/C0450701/image`;
+                let kuvaUrl = `https://tie.digitraffic.fi/api/weathercam/v1/stations/${kameraID}/presets/${presetIDs[i]}/image`;
                 html += `<div><h3>Kamera ${i + 1}</h3><img src="${kuvaUrl}" alt="Liikennekamera ${i + 1}" onerror="this.onerror=null; this.src='error.png';"></div>`;
             }
             
