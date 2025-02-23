@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liikennekamerat - Tampere</title>
+    <title>Liikennekamerat: Lakalaiva</title>
     <link rel="stylesheet" href="tyyli.css">
 </head>
 <body>
@@ -17,45 +17,22 @@
         <a href="junat.html">Junat</a>
     </nav>
 
-    <h1>Liikennekamerat - Lakalaiva, Tie 3</h1>
+    <h1>Liikennekamerat: Lakalaiva</h1>
     <div id="kamerat"></div>
 
     <script>
-        // Lakalaivan liikennekamerat (Tie 3)
-        const kamerat = ["C04507", "C04508", "C04509", "C04510", "C04511"];
-        let html = "";
+        const kameraID = "C04507";
+        const presetIDs = ["C0450701", "C0450702", "C0450703", "C0450704", "C0450709"];
 
-        kamerat.forEach(id => {
-            fetch(`https://tie.digitraffic.fi/api/weathercam/v1/stations/${id}/data`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.length > 0) {
-                        for (var i = 0; i < data.length; i++) {
-                            let kuvaURL = data[i].imageUrl;
-                            let aikaleima = data[i].measuredTime;
-                            let aika = new Date(aikaleima).toLocaleString("fi-FI");
+        presetIDs.forEach(presetID => {
+            const kuvaUrl = `https://tie.digitraffic.fi/api/weathercam/v1/stations/${kameraID}/presets/${presetID}/image`;
 
-                            html += `<div>
-                                <h3>Liikennekamera ${id}</h3>
-                                <p>${aika}</p>
-                                <img src="${kuvaURL}" alt="Liikennekamerakuva ${id}" width="400">
-                            </div>`;
-                        }
-                    }
-                    document.getElementById("kamerat").innerHTML = html;
-                })
-                .catch(error => {
-                    console.error(`Virhe haettaessa liikennekameran ${id} tietoja:`, error);
-                });
+            const kameraDiv = document.createElement("div");
+            kameraDiv.classList.add("kamera-box");
+            kameraDiv.innerHTML = `<h2>Kamera ${presetID}</h2><img src="${kuvaUrl}" alt="Kelikamera ${presetID}" width="500">`;
+            document.getElementById("kamerat").appendChild(kameraDiv);
         });
-
- 
-
     </script>
-
-<script>
-    console.log("Testi!");
-</script>
 
 </body>
 </html>
