@@ -66,6 +66,42 @@
     <div class="col-md-8">
       <h4>Paikallissää</h4>
       <p>Tarkasta ottelusää</p>
+
+      <h1>Säätila Helsingissä ja Tampereella</h1>
+      <div class="saa-container">
+          <div class="saa-box">
+              <h2>Helsinki</h2>
+              <p id="helsinki"></p>
+          </div>
+          <div class="saa-box">
+              <h2>Tampere</h2>
+              <p id="tampere"></p>
+          </div>
+      </div>
+  
+      <script>
+          const apiKey = "665ecd56dfc08dbb50feb8b8f5034e28"; 
+          const kaupungit = [
+              { nimi: "Helsinki", id: "helsinki", url: `https://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=metric&lang=fi&appid=${apiKey}` },
+          ];
+  
+          function haeSaa(kaupunki) {
+              fetch(kaupunki.url)
+                  .then(response => response.json())
+                  .then(data => {
+                      document.getElementById(kaupunki.id).innerHTML =
+                          `<b>Lämpötila:</b> ${Math.round(data.main.temp)}°C <br> 
+                           <b>Kosteus:</b> ${data.main.humidity}% <br>
+                           <b>Kuvaus:</b> ${data.weather[0].description}`;
+                  })
+                  .catch(error => {
+                      document.getElementById(kaupunki.id).innerHTML = "Tietoa ei saatavilla.";
+                      console.error("Virhe haettaessa säätietoja:", error);
+                  });
+          }
+  
+          kaupungit.forEach(haeSaa);
+      </script>
     </div>
   </div>
 </div>
