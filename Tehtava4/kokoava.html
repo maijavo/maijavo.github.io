@@ -12,26 +12,24 @@
       background-color: #228B22 !important;
     }
 
-    .fixed-img {
+    .content-image {
       width: 100%;
-      max-width: 400px;
-      height: 250px;
+      height: auto;
+      max-height: 250px;
       object-fit: cover;
-      display: block;
-      margin: auto;
     }
 
-    h1, h2, h3, h4 {
+    h1, h2, h3 {
       font-family: Arial, sans-serif;
     }
 
     .nav-pills .nav-link {
-      color: #228B22; 
+      color: #228B22;
       background-color: white;
     }
 
     .nav-pills .nav-link:hover {
-      color: #1e7e1e; 
+      color: #1e7e1e;
       background-color: white;
     }
   </style>
@@ -40,7 +38,7 @@
 
 <div class="p-5 bg-green text-white text-center">
   <h1>Jalavasaaren Palloseura</h1>
-  <p>Tervetuloa Jalavasaaren Palloseuran sivuille! Olitpa jo mukana seurassamme tai pohdit liittymistä, täältä löydät tarvittavan tiedon.</p> 
+  <p>Tervetuloa Jalavasaaren Palloseuran sivuille! Olitpa jo mukana seurassamme tai pohdit liittymistä, täältä löydät tarvittavan tiedon.</p>
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -61,28 +59,30 @@
 
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6 text-center">
       <h2>Tietoa meistä</h2>
-      <img src="jalis.jpg" alt="Jalkapallon kuva" class="fixed-img">
+      <img src="jalis.jpg" alt="Jalkapallon kuva" class="content-image">
       <p>Olemme vuonna 2005 perustettu höntsäfutisjoukkue, joka pelaa rakkaudesta lajiin. Emme ota itseämme liian vakavasti, vaan jokainen saa tulla mukaan sellaisena kuin on.</p>
-      <h3 class="mt-4">Lue lisää</h3>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="ajankohtaista.html">Ajankohtaista</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="yhteystiedot.html">Yhteystiedot</a>
-        </li>
-      </ul>
-      <hr class="d-md-none">
     </div>
-    
-    <div class="col-md-8">
-      <h4>Tule mukaan höntsäämään!</h4>
-      <img src="jalis1.jpg" alt="Jalkapallon kuva" class="fixed-img">
+
+    <div class="col-md-6 text-center">
+      <h2>Tule mukaan höntsäämään!</h2>
+      <img src="jalis1.jpg" alt="Jalkapallon kuva" class="content-image">
       <p>Oletko aina pohtinut, miltä tuntuisi pelata jalkapalloa seurassamme? Tervetuloa mukaan Jalavasaaren Palloseuraan! Etsimme jatkuvasti uusia harrastejalkapalloilijoita, eikä meillä ole suoriutumisvaatimuksia. Pelaamme rakkaudesta lajiin.</p>
     </div>
   </div>
+</div>
+
+<div class="container mt-4">
+  <h3 class="text-center">Lue lisää</h3>
+  <ul class="nav nav-pills justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="ajankohtaista.html">Ajankohtaista</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="yhteystiedot.html">Yhteystiedot</a>
+    </li>
+  </ul>
 </div>
 
 <div class="mt-5 p-4 bg-dark text-white text-center">

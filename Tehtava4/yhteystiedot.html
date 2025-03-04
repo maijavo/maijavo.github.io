@@ -12,25 +12,39 @@
       background-color: #228B22 !important;
     }
 
-    .fixed-img {
-      width: 100%;
-      max-width: 400px;
-      height: 250px;
-      object-fit: cover;
-      display: block;
-      margin: auto;
+    h1, h2 {
+      font-family: Arial, sans-serif;
     }
 
-    h1, h2, h3, h4 {
-      font-family: Arial, sans-serif;
+    .contact-container {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card-img-top {
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      flex-grow: 1;
     }
   </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <div class="p-5 bg-green text-white text-center">
   <h1>Yhteystiedot</h1>
-  <p>Alta löydät seuramme yhteystoedot</p> 
+  <p>Alta löydät seuramme yhteystiedot</p> 
 </div>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -43,29 +57,37 @@
         <a class="nav-link" href="ajankohtaista.html">Ajankohtaista</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="yhteystiedot.html">Yhteystiedot</a>
+        <a class="nav-link active" href="yhteystiedot.html">Yhteystiedot</a>
       </li>
     </ul>
   </div>
 </nav>
-
-<div class="container mt-3">
-    <div class="card" style="width:400px">
-      <img class="card-img-top" src="minni.jpg" alt="Card image" style="width:100%">
-      <div class="card-body">
-        <h4 class="card-title">Minni Jannanen</h4>
-        <p class="card-text"> Juniorivalmentaja. junnut@jalavasaarenpallot.fi </p>
+<br>
+<br>
+<br>
+<div class="container contact-container mt-3 flex-grow-1">
+  <div class="row justify-content-center align-items-stretch">
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="card">
+        <img class="card-img-top" src="minni1.jpg" alt="Card image">
+        <div class="card-body">
+          <h2 class="card-title">Minni Jannanen</h2>
+          <p class="card-text">Juniorivalmentaja. junnut@jalavasaarenpallot.fi</p>
+        </div>
       </div>
     </div>
-<br>
-<div class="container mt-3">
-      <div class="card" style="width:400px">
-         <img class="card-img-top" src="Manni.jpg" alt="Card image" style="width:100%">
-         <div class="card-body">
-           <h4 class="card-title">Manni Monnonen</h4>
-           <p class="card-text">Aikuiset, miehet. miehet@jalavasaarenpallo.fi</p>
-         </div>
-       </div>
+    
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="card">
+        <img class="card-img-top" src="Manni.jpg" alt="Card image">
+        <div class="card-body">
+          <h2 class="card-title">Manni Monnonen</h2>
+          <p class="card-text">Aikuiset, miehet. miehet@jalavasaarenpallo.fi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="mt-5 p-4 bg-dark text-white text-center">
   <p>Jalavasaaren Palloseura 2025</p>
